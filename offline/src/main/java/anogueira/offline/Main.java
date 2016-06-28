@@ -54,7 +54,7 @@ public class Main {
 			customerNumbers.add(args[index]);
 		}
 
-		return (customerNumbers.size() > 0) ? true : false; 
+		return customerNumbers.size() > 0; 
 	}
 
 	private static String formatOutput(PhoneNumberContext numberContext){
