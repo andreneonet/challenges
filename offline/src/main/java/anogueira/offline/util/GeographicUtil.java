@@ -11,21 +11,21 @@ import anogueira.offline.geolocator.Coordinate;
 public final class GeographicUtil {
 
 	/**
-	 * Represents length units 
+	 * Represents the converting factor
 	 * @author Andre Nogueira
 	 */
-	public enum LengthUnit {
+	public enum ConvertFactorUnit {
 		KILOMETERS  (1.609344),
 		MILES(0.8684);
 
-		private final double  measure;
+		private final double factor;
 
-		LengthUnit(double measure) {
-			this.measure = measure;
+		ConvertFactorUnit(double factor) {
+			this.factor = factor;
 		}
 
-		public double getMeasure() {
-			return this.measure;
+		public double getFactor() {
+			return this.factor;
 		}
 	}
 
@@ -40,7 +40,7 @@ public final class GeographicUtil {
 	 * @return the distance in kilometers between two coordinates
 	 */
 	public static double distance(Coordinate coord1, Coordinate coord2){
-		return distance(coord1,coord2,LengthUnit.KILOMETERS);
+		return distance(coord1,coord2,ConvertFactorUnit.KILOMETERS);
 	}
 
 	/**
@@ -51,13 +51,13 @@ public final class GeographicUtil {
 	 * @param unit The unit of length
 	 * @return the distance between two coordinates according to the unit of length
 	 */
-	public static double distance(Coordinate coord1, Coordinate coord2, LengthUnit unit){
+	public static double distance(Coordinate coord1, Coordinate coord2, ConvertFactorUnit unit){
 		double theta = coord1.getLongitude() - coord2.getLongitude();
 		double dist = Math.sin(deg2rad(coord1.getLatitude())) * Math.sin(deg2rad(coord2.getLatitude())) + Math.cos(deg2rad(coord1.getLatitude())) * Math.cos(deg2rad(coord2.getLatitude())) * Math.cos(deg2rad(theta));
 		dist = Math.acos(dist);
 		dist = rad2deg(dist);
 		dist = dist * 60 * 1.1515;
-		dist = dist * unit.getMeasure();
+		dist = dist * unit.getFactor();
 
 		return (dist);
 	}

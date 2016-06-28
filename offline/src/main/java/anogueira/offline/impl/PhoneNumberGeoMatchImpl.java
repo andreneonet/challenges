@@ -24,15 +24,6 @@ class PhoneNumberGeoMatchImpl implements PhoneNumberGeoMatch{
 	private GeoLocatorService geoLocator;
 	private LookupService phoneNumberLookup;
 
-
-	static final AbstractCriteria SAME_COUNTRY = new AbstractCriteria() {
-		@Override
-		protected Predicate<? super PhoneNumberContext> getFilter(PhoneNumberContext targetContext) {
-			return customerContext -> customerContext.getLookupInfo().getRegion().equalsIgnoreCase(targetContext.getLookupInfo().getRegion());
-		}
-	};
-
-
 	public PhoneNumberGeoMatchImpl(GeoLocatorService geoLocator, LookupService phoneNumberLookup){
 		this.geoLocator = geoLocator;
 		this.phoneNumberLookup = phoneNumberLookup;
@@ -52,7 +43,7 @@ class PhoneNumberGeoMatchImpl implements PhoneNumberGeoMatch{
 		}
 
 		if(sameCountry){
-			customersContexts = SAME_COUNTRY.meetCriteria(targetContext,customersContexts);
+			customersContexts = new SameContryCriteria().meetCriteria(targetContext,customersContexts);
 		}
 
 		return selectClosestCustomerNumber(targetContext,customersContexts);
