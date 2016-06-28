@@ -1,0 +1,21 @@
+Steps to install SQLite on Ubuntu
+
+#sudo apt-get install sqlite3 libsqlite3-dev
+
+Steps to create a database - geo - and to load the database schema
+
+#cd src/main/resources
+#sqlite3 geo.db
+#sqlite> .read database.sql
+
+Steps to show the tables available on the database geo
+
+sqlite3 geo.db
+sqlite> .tables
+sqlite> select * from PositionInfo;
+
+
+Clean table PositionInfo
+
+sqlite3 geo.db
+sqlite> DELETE FROM PositionInfo;
