@@ -21,12 +21,16 @@ public abstract class AbstractGeoLocatorCache implements GeoLocatorService {
 		PositionInfo position = loadPositionInfo(region,location);
 
 		if(position == null){
-			Coordinate coordinate = geoLocator.getCoordinate(region, location);
+			try{
+				Coordinate coordinate = geoLocator.getCoordinate(region, location);
+				
+				position = new PositionInfo(region, location,coordinate); 
 
-			position = new PositionInfo(region, location,coordinate); 
-
-			if(coordinate !=null){
-				storePositionInfo(position);
+				if(coordinate !=null){
+					storePositionInfo(position);
+				}
+			}catch(Exception e){
+				return null;
 			}
 		}
 
@@ -41,7 +45,7 @@ public abstract class AbstractGeoLocatorCache implements GeoLocatorService {
 	 * @return the PositionInfo related with the region and location, or null if it does not exist
 	 */
 	public abstract PositionInfo loadPositionInfo(String region, String location);
-	
+
 	/**
 	 * Stores a PositionInfo in the cache
 	 *
