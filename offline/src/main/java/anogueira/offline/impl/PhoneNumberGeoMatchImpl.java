@@ -41,7 +41,7 @@ class PhoneNumberGeoMatchImpl implements PhoneNumberGeoMatch{
 
 	@Override
 	public PhoneNumberContext retrieveClosest(String targetNumber, List<String> customerNumbers, boolean sameCountry) {
-		Validate.notEmpty(targetNumber,"targetNumber has no content.");
+		Validate.notBlank(targetNumber,"targetNumber has no content.");
 		Validate.notEmpty(customerNumbers,"customerNumbers has no content.");
 
 		PhoneNumberContext targetContext = createPhoneNumberContext(targetNumber);
