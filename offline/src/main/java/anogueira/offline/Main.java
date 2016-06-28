@@ -40,7 +40,7 @@ public class Main {
 		context.close();
 	}
 
-	private static boolean validateArguments(String args[]) {
+	private static boolean validateArguments(String [] args) {
 		int index = 0;
 
 		if(args[index].equalsIgnoreCase("--same-country-only")){
