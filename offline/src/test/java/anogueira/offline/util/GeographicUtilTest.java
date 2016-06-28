@@ -8,7 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import anogueira.offline.geolocator.Coordinate;
-import anogueira.offline.util.GeographicUtil.LengthUnit;
+import anogueira.offline.util.GeographicUtil.ConvertFactorUnit;
 
 /**
  * @author Andre Nogueira
@@ -36,9 +36,9 @@ public class GeographicUtilTest{
 		
 	@Test
 	public void correctDistancesMiles(){
-		Assert.assertTrue(GeographicUtil.distance(LISBOA_PT, LONDON_GB, LengthUnit.MILES) < GeographicUtil.distance(LISBOA_PT,NEW_YORK_US, LengthUnit.MILES));
-		Assert.assertTrue(GeographicUtil.distance(CALIFORNIA_US, NEW_YORK_US, LengthUnit.MILES) < GeographicUtil.distance(CALIFORNIA_US,LISBOA_PT, LengthUnit.MILES));
-		Assert.assertTrue(GeographicUtil.distance(MIAMI_US, NEW_YORK_US, LengthUnit.MILES) < GeographicUtil.distance(AUSTIN_US,NEW_YORK_US, LengthUnit.MILES));
+		Assert.assertTrue(GeographicUtil.distance(LISBOA_PT, LONDON_GB, ConvertFactorUnit.MILES) < GeographicUtil.distance(LISBOA_PT,NEW_YORK_US, ConvertFactorUnit.MILES));
+		Assert.assertTrue(GeographicUtil.distance(CALIFORNIA_US, NEW_YORK_US, ConvertFactorUnit.MILES) < GeographicUtil.distance(CALIFORNIA_US,LISBOA_PT, ConvertFactorUnit.MILES));
+		Assert.assertTrue(GeographicUtil.distance(MIAMI_US, NEW_YORK_US, ConvertFactorUnit.MILES) < GeographicUtil.distance(AUSTIN_US,NEW_YORK_US, ConvertFactorUnit.MILES));
 	}
 
 }
