@@ -8,6 +8,7 @@ import com.google.maps.model.GeocodingResult;
 
 import anogueira.offline.geolocator.Coordinate;
 import anogueira.offline.geolocator.GeoLocatorService;
+import anogueira.offline.geolocator.GeoLocatorServiceException;
 
 /**
  * An implementation of the GeoLocatorService using the Java Client for Google Maps Services
@@ -34,14 +35,15 @@ class GoogleMapsGeoLocator implements GeoLocatorService {
 		Coordinate coordinate = null;
 		try {
 			
-			
 			GeocodingResult[] results = GeocodingApi.geocode(geoApiContext,address).await();
 			if(results.length > 0){
 				coordinate = new Coordinate(
 						results[0].geometry.location.lat,
 						results[0].geometry.location.lng);
 			}
-		} catch (Exception e) {}
+		} catch (Exception e) {
+			 throw new GeoLocatorServiceException(e.getMessage());
+		}
 
 		return coordinate;		
 	}
