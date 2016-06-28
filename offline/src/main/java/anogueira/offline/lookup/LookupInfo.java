@@ -10,6 +10,11 @@ public class LookupInfo {
 	private String region;
 	private String location;
 
+	public LookupInfo(String country, String location) {
+		this.region = country;
+		this.location = location;
+	}
+	
 	public String getRegion() {
 		return region;
 	}

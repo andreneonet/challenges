@@ -41,11 +41,7 @@ class LookupServiceImpl implements LookupService {
 		String country = phoneUtil.getRegionCodeForNumber(phoneNumber);
 		String location= geocoder.getDescriptionForNumber(phoneNumber, Locale.ENGLISH);
 
-		LookupInfo phoneNumberInfo = new LookupInfo();
-		phoneNumberInfo.setRegion(country);
-		phoneNumberInfo.setLocation(location);
-
-		return phoneNumberInfo;
+		return new LookupInfo(country,location);
 	}
 }
 
