@@ -18,7 +18,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 
 	<bean id="geoLocator" class="anogueira.offline.geolocator.impl.GoogleMapsGeoLocator">
 		<constructor-arg>
-			<value><!-- Google Maps Geocoding key --></value>
+			<value>AIzaSyBVoLWvlZbSgJL08N5SV488yUgSWGOeVyQ</value>
 		</constructor-arg>
 		<constructor-arg>
 			<value>1</value>
@@ -27,6 +27,8 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 
 	<bean id="phoneNumberLookup" class="anogueira.offline.lookup.impl.LookupServiceImpl" />
 
+	<bean id="formatOutputGeoMatch" class="anogueira.offline.FormatOutputGeoMatchImpl" />
+	
 	<bean id="positionInfoDAO" class="anogueira.offline.geolocator.cache.impl.JdbcTemplatePositionDAO">
 		<constructor-arg ref="jdbcTemplate" />
 	</bean>

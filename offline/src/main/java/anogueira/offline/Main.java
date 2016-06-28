@@ -26,12 +26,13 @@ public class Main {
 		AbstractXmlApplicationContext context = new ClassPathXmlApplicationContext("application.xml");
 
 		PhoneNumberGeoMatch numberGeoMatch = context.getBean("phoneNumberGeoMatch",PhoneNumberGeoMatch.class);
+		FormatOutputGeoMatch formatter  = context.getBean("formatOutputGeoMatch",FormatOutputGeoMatch.class);
 
 		try{
 			
 			PhoneNumberContext numberContext = numberGeoMatch.retrieveClosest(targetNumber, customerNumbers, optionSameCountry);
 			
-			System.out.println(formatOutput(numberContext));
+			System.out.println(formatter.format(numberContext));
 			
 		}catch(Exception e){
 			System.out.println(e.getMessage());
@@ -57,18 +58,4 @@ public class Main {
 		return customerNumbers.size() > 0; 
 	}
 
-	private static String formatOutput(PhoneNumberContext numberContext){
-		if(numberContext == null){
-			return "no match found";
-		}else{
-			String phoneNumber =  numberContext.getNumber();
-			String region =  numberContext.getLookupInfo().getRegion();
-			String location = numberContext.getLookupInfo().getLocation();
-			
-			if(location == null){
-				location = "";
-			}
-			return String.format("%s ( Region: %s, Location: %s)",phoneNumber,region,location);
-		}
-	}
 }
